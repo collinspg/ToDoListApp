@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List - CSE 310 Module 3</title>
+
+    <!-- SweetAlert2 library loaded via CDN - used for confirmation dialogs -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        /* ============================================
+           GENERAL PAGE STYLING
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* ============================================
+           MAIN CONTAINER CARD
+           ============================================ */
+        .container {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2575fc;
+            margin-bottom: 20px;
+        }
+
+        /* ============================================
+           INPUT SECTION
+           ============================================ */
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #taskInput {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #taskInput:focus {
+            border-color: #2575fc;
+        }
+
+        #addBtn {
+            background: #2575fc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #addBtn:hover {
+            background: #6a11cb;
+        }
+
+        /* ============================================
+           FILTER BUTTONS
+           ============================================ */
+        .filter-section {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .filter-btn.active {
+            background: #2575fc;
+            color: white;
+        }
+
+        /* ============================================
+           TASK LIST STYLING
+           ============================================ */
+        #taskList {
+            list-style: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f9f9f9;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: background 0.3s;
+        }
+
+        .task-item:hover {
+            background: #eef2ff;
+        }
+
+        .task-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .task-text {
+            font-size: 16px;
+            word-break: break-word;
+        }
+
+        /* Strikethrough effect for completed tasks */
+        .task-text.completed {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        .delete-btn {
+            background: #ff4d4f;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+        }
+
+        /* ============================================
+           STATS SECTION
+           ============================================ */
+        .stats {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #aaa;
+            padding: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📝 My To-Do List</h1>
+
+        <!-- Input section for adding new tasks -->
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="What do you need to do?">
+            <button id="addBtn">Add</button>
+        </div>
+
+        <!-- Filter buttons -->
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <!-- Task list will be dynamically populated here -->
+        <ul id="taskList"></ul>
+
+        <!-- Statistics section -->
+        <div class="stats" id="stats"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
