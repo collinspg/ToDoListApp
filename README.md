@@ -7,7 +7,7 @@ add tasks, mark them as completed, filter tasks by status, and delete tasks
 with a confirmation dialog. All functionality runs directly in the browser.
 
 ## Demo Video
-[Watch the demo on YouTube](YOUR_YOUTUBE_LINK_HERE)
+[Watch the demo on YouTube](https://youtu.be/npP2BoAVqwg)
 
 ## Features
 - Add new tasks using an input field or by pressing Enter
